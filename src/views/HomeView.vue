@@ -1,18 +1,25 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>{{ message }}</h1>
+    <HelloWorld />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import { defineComponent, ref, defineAsyncComponent } from "vue";
 
-export default {
+const HelloWorld = defineAsyncComponent(() =>
+  import("@/components/HelloWorld.vue")
+);
+export default defineComponent({
   name: "HomeView",
-  components: {
-    HelloWorld,
+  components: { HelloWorld },
+  setup() {
+    const message = ref("Welcome to Vue Js");
+
+    return {
+      message,
+    };
   },
-};
+});
 </script>
