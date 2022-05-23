@@ -1,9 +1,14 @@
-import { createStore } from "vuex";
+/* eslint-disable */
+import { createStore } from 'vuex';
+
+// Common File Import
+import loading from './loading';
 
 export default createStore({
   state: {},
-  getters: {},
   mutations: {},
   actions: {},
-  modules: {},
+  modules: {
+    loading
+  }
 });
