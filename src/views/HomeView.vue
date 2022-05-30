@@ -6,20 +6,18 @@
 </template>
 
 <script>
-import { defineComponent, ref, defineAsyncComponent } from "vue";
+import { defineComponent, ref, defineAsyncComponent } from 'vue';
 
-const HelloWorld = defineAsyncComponent(() =>
-  import("@/components/HelloWorld.vue")
-);
+const HelloWorld = defineAsyncComponent(() => import('@/components/HelloWorld.vue'));
 export default defineComponent({
-  name: "HomeView",
+  name: 'HomeView',
   components: { HelloWorld },
   setup() {
-    const message = ref("Welcome to Vue Js");
+    const message = ref('Welcome to Vue Js');
 
     return {
-      message,
+      message
     };
-  },
+  }
 });
 </script>

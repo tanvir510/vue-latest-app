@@ -1,15 +1,16 @@
-window.axios = require("axios");
+/* eslint-disable no-undef */
+window.axios = require('axios');
 
 // Base Url
 window.axios.defaults.baseURL = process.env.VUE_APP_API_URL;
 
 // Request Interceptors
 window.axios.interceptors.request.use(function (config) {
-  const token = JSON.parse(localStorage.getItem("auth_token"));
+  const token = JSON.parse(localStorage.getItem('auth_token'));
   if (token != null) {
-    config.headers["Authorization"] = token;
+    config.headers['Authorization'] = token;
   } else {
-    config.headers["Authorization"] = null;
+    config.headers['Authorization'] = null;
   }
   return config;
 });

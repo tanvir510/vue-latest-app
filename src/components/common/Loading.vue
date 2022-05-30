@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "PreLoading",
+  name: 'PreLoading'
 };
 </script>
 
@@ -52,7 +52,7 @@ export default {
   top: 0;
 }
 .fading-circle .sk-circle:before {
-  content: "";
+  content: '';
   display: block;
   margin: 0 auto;
   width: 15%;
