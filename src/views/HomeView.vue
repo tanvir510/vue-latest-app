@@ -8,12 +8,12 @@
 <script>
 import { defineComponent, ref, defineAsyncComponent } from 'vue';
 
-const HelloWorld = defineAsyncComponent(() => import('@/components/HelloWorld.vue'));
+const HelloWorld = defineAsyncComponent(() => import('@/components/Slider.vue'));
 export default defineComponent({
   name: 'HomeView',
   components: { HelloWorld },
   setup() {
-    const message = ref('Welcome to Vue Js');
+    const message = ref('Welcome to Vue Custom Slider');
 
     return {
       message
