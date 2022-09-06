@@ -1,11 +1,12 @@
 <template>
   <div class="slider-wrapper">
     <div id="app">
+      <!-- Slider navigator -->
       <ul class="navigator">
         <li class="lightgrey" @click="prevSlide">&laquo;</li>
         <li
           class="lightgrey"
-          v-for="(slider, index) in slides"
+          v-for="(slider, index) in maxSlides"
           :key="index"
           @click="changedSlide(index + 1)"
         >
@@ -13,9 +14,16 @@
         </li>
         <li class="lightgrey" @click="nextSlide">&raquo;</li>
       </ul>
-      <div class="slider-container">
+
+      <!-- Slider container -->
+      <div class="slider-container" :style="{ width: `${maxWidth}px` }">
         <ul class="slider" :style="sliderStyle">
-          <li class="blue slide" v-for="(slider, index) in slides" :key="index">
+          <li
+            class="blue slide"
+            :style="{ width: `${maxWidth}px` }"
+            v-for="(slider, index) in maxSlides"
+            :key="index"
+          >
             {{ index + 1 }}
           </li>
         </ul>
@@ -30,7 +38,8 @@ export default {
   name: 'SilderView',
   setup() {
     const activeSlide = ref(1);
-    const slides = ref(5);
+    const maxSlides = 5;
+    const maxWidth = 700;
 
     const changedSlide = (slider) => {
       activeSlide.value = slider;
@@ -41,23 +50,25 @@ export default {
     };
 
     const nextSlide = () => {
-      if (activeSlide.value < slides.value) activeSlide.value++;
+      if (activeSlide.value < maxSlides) activeSlide.value++;
     };
 
     const sliderStyle = computed(() => {
-      const width = 0 - (activeSlide.value - 1) * 700;
+      const width = 0 - (activeSlide.value - 1) * maxWidth;
       return {
-        transform: 'translateX(' + width + 'px)'
+        transform: 'translateX(' + width + 'px)',
+        width: `${maxWidth * maxSlides}px`
       };
     });
 
     return {
-      slides,
+      maxWidth,
+      maxSlides,
       activeSlide,
+      sliderStyle,
       changedSlide,
       prevSlide,
-      nextSlide,
-      sliderStyle
+      nextSlide
     };
   }
 };
@@ -67,28 +78,23 @@ export default {
 <style scoped lang="scss">
 .slider-container {
   overflow: hidden;
-  width: 700px;
-  height: 200px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 30px auto 0px;
 }
 
 .slider {
-  width: 3500px;
-  height: 200px;
   overflow: hidden;
   transition: all 0.32s ease;
+  display: flex;
+  align-items: center;
 }
 
 .slide {
-  float: left;
-  width: 700px;
   height: 200px;
   font-size: 40px;
   color: #eee;
-  padding-top: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 // Common color background
